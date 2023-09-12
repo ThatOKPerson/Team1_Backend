@@ -29,3 +29,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: runner / checkstyle
+      uses: dbelyaev/action-checkstyle@v0.9.4
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: github-pr-review
+        level: warning

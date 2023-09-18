@@ -7,6 +7,11 @@ How to start the true application
 1. Start application with `java -jar target/Team1_Backend-1.0-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter url `http://localhost:8080`
 
+Install JHusky
+---
+
+Run `mvn jhusky:install -Ddirectory=.husky`
+
 Health Check
 ---
 

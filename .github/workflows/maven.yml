@@ -47,7 +47,6 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build & push the Docker image
-      uses: docker/build-push-action@v4
       env:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_USERNAME: ${{ secrets.DB_USERNAME }}

@@ -3,7 +3,7 @@ package org.example;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.example.resources.HelloWorldController;
+import org.example.resources.JobRoleController;
 
 /**
  * Main Application.
@@ -27,7 +27,7 @@ public class TrueApplication extends Application<TrueConfiguration> {
   @Override
   public void run(final TrueConfiguration configuration,
                   final Environment environment) {
-    environment.jersey().register(new HelloWorldController());
+    environment.jersey().register(new JobRoleController());
   }
 
 }

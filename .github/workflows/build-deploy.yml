@@ -17,12 +17,16 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: Clean Install with Maven
+      run: mvn clean install -DskipTests
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package -DskipTests --file pom.xml
+    - name: Run Unit Tests
+      run: mvn test -DtestGroup=unit
 
   deploy:
-    if: github.ref == 'refs/heads/main'
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
     - name: Configure AWS credentials

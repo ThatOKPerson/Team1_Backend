@@ -1,5 +1,8 @@
 package org.example.cli;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This is the base class to store a job role as an object.
  *
@@ -13,6 +16,7 @@ public class JobRole {
   private String managementLevel;
   private String description;
   private String minimalEssentialRequirements;
+  private String sharepointLink;
 
   /**
    * This is the constructor for the jobRole object.
@@ -34,6 +38,40 @@ public class JobRole {
     this.managementLevel = managementLevel;
     this.description = description;
     this.minimalEssentialRequirements = minimalEssentialRequirements;
+  }
+
+  /**
+   * Constructs a new instance of the JobRole class using JSON properties.
+   * This constructor is annotated with {@code @JsonCreator} to specify that it should be used
+   * when deserializing JSON data into a JobRole object. It accepts individual JSON properties
+   * as arguments and initializes the corresponding fields of the JobRole instance.
+   *
+   * @param capability                   The capability(job group) that the job role belongs to.
+   * @param jobFamily                    The family of the job role.
+   * @param jobProfileTitle              The title of the job role.
+   * @param managementLevel              The management level of the job role.
+   * @param description                  The job role's description.
+   * @param minimalEssentialRequirements The minimal essential requirements to apply.
+   * @param sharepointLink               The link to job profile on sharepoint
+   */
+  @JsonCreator
+  public JobRole(
+      @JsonProperty("roleId") int roleId,
+      @JsonProperty("capability") String capability,
+      @JsonProperty("jobFamily") String jobFamily,
+      @JsonProperty("jobProfileTitle") String jobProfileTitle,
+      @JsonProperty("managementLevel") String managementLevel,
+      @JsonProperty("description") String description,
+      @JsonProperty("minimalEssentialRequirements") String minimalEssentialRequirements,
+      @JsonProperty("sharepointLink") String sharepointLink) {
+    this.setJobRoleId(roleId);
+    this.setCapability(capability);
+    this.setJobFamily(jobFamily);
+    this.setJobProfileTitle(jobProfileTitle);
+    this.setManagementLevel(managementLevel);
+    this.setDescription(description);
+    this.setMinimalEssentialRequirements(minimalEssentialRequirements);
+    this.setSharepointLink(sharepointLink);
   }
 
   public int getJobRoleId() {
@@ -90,5 +128,13 @@ public class JobRole {
 
   public void setMinimalEssentialRequirements(String minimalEssentialRequirements) {
     this.minimalEssentialRequirements = minimalEssentialRequirements;
+  }
+
+  public String getSharepointLink() {
+    return sharepointLink;
+  }
+
+  public void setSharepointLink(String sharepointLink) {
+    this.sharepointLink = sharepointLink;
   }
 }

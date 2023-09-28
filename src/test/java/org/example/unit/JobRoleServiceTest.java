@@ -11,6 +11,8 @@ import org.example.api.JobRoleService;
 import org.example.cli.JobRole;
 import org.example.client.DatabaseConnectionException;
 import org.example.client.FailedToGetJobRoleException;
+import org.example.client.FailedToGetSpecificationException;
+import org.example.client.SpecificationDoesNotExistException;
 import org.example.db.DatabaseConnector;
 import org.example.db.JobRoleDao;
 import org.junit.jupiter.api.Test;
@@ -114,4 +116,56 @@ public class JobRoleServiceTest {
     assertEquals(expectedResult.get(1).getMinimalEssentialRequirements(),
         result.get(1).getMinimalEssentialRequirements());
   }
+
+  /*
+  Unit test for the getSpecificationById method
+
+  When the dao throws an SpecificationDoesNotExist Exception
+
+  Expect SpecificationDoesNotExist to be thrown
+      */
+  @Test
+  void getSpecificationById_shouldThrowSpecificationDoesNotExistException_whenDaoReturnsNull()
+      throws SQLException, DatabaseConnectionException {
+    Mockito.when(databaseConnector.getConnection()).thenReturn(conn);
+    int id = 1000000;
+    Mockito.when(jobRoleDao.getSpecificationById(id, conn)).thenReturn(null);
+    assertThrows(SpecificationDoesNotExistException.class,
+        () -> jobRoleService.getSpecificationById(id));
+  }
+
+  /*
+Unit test for the getSpecificationById method
+
+Should return a jobRoleId when Dao Returns an ID
+
+    */
+  @Test
+  void getSpecificationById_shouldReturnId_whenDaoReturnsId() throws DatabaseConnectionException,
+      SQLException, SpecificationDoesNotExistException, FailedToGetSpecificationException {
+    int roleId = 1;
+    JobRole specification = new JobRole(roleId, "test", "test", "test", "test", "test", "test");
+    Mockito.when(databaseConnector.getConnection()).thenReturn(conn);
+    Mockito.when(jobRoleDao.getSpecificationById(roleId, conn)).thenReturn(specification);
+    assertEquals(specification, jobRoleService.getSpecificationById(roleId));
+  }
+
+  /*
+  Unit test for the getSpecificationById method
+
+  When the dao returns a SQLException
+
+  Expect the SQLException to be caught
+  */
+  @Test
+  void getSpecificationById_shouldThrowSqlException_whenDaoThrowsSqlException() throws
+      SQLException, DatabaseConnectionException {
+    int id = 10000;
+    Mockito.when(databaseConnector.getConnection()).thenReturn(conn);
+    Mockito.when(jobRoleDao.getSpecificationById(id, conn)).thenThrow(SQLException.class);
+
+    assertThrows(SQLException.class,
+        () -> jobRoleService.getSpecificationById(id));
+  }
+
 }

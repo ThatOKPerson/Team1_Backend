@@ -19,5 +19,7 @@ jobs:
         run: mvn -B package -DskipTests --file pom.xml
       - name: Run integration tests
         env:
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           BASE_URL: ${{ vars.BASE_URL }}
         run: mvn test -DtestGroup=integration

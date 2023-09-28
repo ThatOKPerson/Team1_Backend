@@ -83,8 +83,8 @@ public class JobRoleServiceTest {
   This should pass without code changes
    */
   @Test
-  void getAllRoles_shouldReturnRoleList() throws
-      SQLException, FailedToGetJobRoleException, DatabaseConnectionException {
+  void getAllRoles_shouldReturnRoleList()
+      throws SQLException, FailedToGetJobRoleException, DatabaseConnectionException {
     List<JobRole> expectedResult = new ArrayList<>();
     JobRole jobRole1 = new JobRole(1, "test", "test", "test", "test", "test", "test");
     JobRole jobRole2 = new JobRole(2, "tester", "tester", "tester", "tester", "tester", "tester");
@@ -97,32 +97,20 @@ public class JobRoleServiceTest {
 
     List<JobRole> result = jobRoleService.getAllRoles();
 
-    assertEquals(expectedResult.get(0).getJobRoleId(),
-        result.get(0).getJobRoleId());
-    assertEquals(expectedResult.get(0).getCapability(),
-        result.get(0).getCapability());
-    assertEquals(expectedResult.get(0).getJobFamily(),
-        result.get(0).getJobFamily());
-    assertEquals(expectedResult.get(0).getJobProfileTitle(),
-        result.get(0).getJobProfileTitle());
-    assertEquals(expectedResult.get(0).getManagementLevel(),
-        result.get(0).getManagementLevel());
-    assertEquals(expectedResult.get(0).getDescription(),
-        result.get(0).getDescription());
+    assertEquals(expectedResult.get(0).getJobRoleId(), result.get(0).getJobRoleId());
+    assertEquals(expectedResult.get(0).getCapability(), result.get(0).getCapability());
+    assertEquals(expectedResult.get(0).getJobFamily(), result.get(0).getJobFamily());
+    assertEquals(expectedResult.get(0).getJobProfileTitle(), result.get(0).getJobProfileTitle());
+    assertEquals(expectedResult.get(0).getManagementLevel(), result.get(0).getManagementLevel());
+    assertEquals(expectedResult.get(0).getDescription(), result.get(0).getDescription());
     assertEquals(expectedResult.get(0).getMinimalEssentialRequirements(),
         result.get(0).getMinimalEssentialRequirements());
-    assertEquals(expectedResult.get(1).getJobRoleId(),
-        result.get(1).getJobRoleId());
-    assertEquals(expectedResult.get(1).getCapability(),
-        result.get(1).getCapability());
-    assertEquals(expectedResult.get(1).getJobFamily(),
-        result.get(1).getJobFamily());
-    assertEquals(expectedResult.get(1).getJobProfileTitle(),
-        result.get(1).getJobProfileTitle());
-    assertEquals(expectedResult.get(1).getManagementLevel(),
-        result.get(1).getManagementLevel());
-    assertEquals(expectedResult.get(1).getDescription(),
-        result.get(1).getDescription());
+    assertEquals(expectedResult.get(1).getJobRoleId(), result.get(1).getJobRoleId());
+    assertEquals(expectedResult.get(1).getCapability(), result.get(1).getCapability());
+    assertEquals(expectedResult.get(1).getJobFamily(), result.get(1).getJobFamily());
+    assertEquals(expectedResult.get(1).getJobProfileTitle(), result.get(1).getJobProfileTitle());
+    assertEquals(expectedResult.get(1).getManagementLevel(), result.get(1).getManagementLevel());
+    assertEquals(expectedResult.get(1).getDescription(), result.get(1).getDescription());
     assertEquals(expectedResult.get(1).getMinimalEssentialRequirements(),
         result.get(1).getMinimalEssentialRequirements());
   }

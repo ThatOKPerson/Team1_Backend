@@ -5,6 +5,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import org.example.resources.AuthController;
 import org.example.resources.JobRoleController;
 
 /**
@@ -36,6 +37,7 @@ public class TrueApplication extends Application<TrueConfiguration> {
   public void run(final TrueConfiguration configuration,
                   final Environment environment) {
     environment.jersey().register(new JobRoleController());
+    environment.jersey().register(new AuthController());
   }
 
 }

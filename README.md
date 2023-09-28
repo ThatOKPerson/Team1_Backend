@@ -9,6 +9,9 @@ Building Application
 - Enter the Database name `export DB_NAME="EXAMPLE"`
 - Enter your Database Username `export DB_USERNAME="EXAMPLE"`
 - Enter your Database Password `export DB_PASSWORD="EXAMPLE"`
+- Enter Admin Username `export ADMIN_USERNAME="EXAMPLE`
+- Enter Admin Password `export ADMIN_PASSWORD="EXAMPLE`
+
 
 - Note: Your API will be running on the URL `http://localhost:8080` which is your base URL for the API
 

@@ -12,7 +12,6 @@ Building Application
 - Enter Admin Username `export ADMIN_USERNAME="EXAMPLE`
 - Enter Admin Password `export ADMIN_PASSWORD="EXAMPLE`
 
-
 - Note: Your API will be running on the URL `http://localhost:8080` which is your base URL for the API
 
 How to start the application

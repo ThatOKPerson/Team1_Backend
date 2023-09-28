@@ -5,6 +5,8 @@ import java.util.List;
 import org.example.cli.JobRole;
 import org.example.client.DatabaseConnectionException;
 import org.example.client.FailedToGetJobRoleException;
+import org.example.client.FailedToGetSpecificationException;
+import org.example.client.SpecificationDoesNotExistException;
 import org.example.db.DatabaseConnector;
 import org.example.db.JobRoleDao;
 
@@ -35,6 +37,26 @@ public class JobRoleService {
     } catch (SQLException | DatabaseConnectionException e) {
       System.err.println(e.getMessage());
       throw new FailedToGetJobRoleException();
+    }
+  }
+
+  /**
+   * This is a method which runs the SQL query from the dao method.
+   *
+   * @return A job specification using the role ID.
+   * @throws FailedToGetJobRoleException When the database fails to connect or SQL is incorrect.
+   */
+  public JobRole getSpecificationById(int roleId) throws SQLException,
+      FailedToGetSpecificationException, SpecificationDoesNotExistException {
+    try {
+      JobRole specification = dao.getSpecificationById(roleId, databaseConnector.getConnection());
+      if (specification == null) {
+        throw new SpecificationDoesNotExistException();
+      }
+      return specification;
+    } catch (DatabaseConnectionException e) {
+      System.err.println(e.getMessage());
+      throw new FailedToGetSpecificationException();
     }
   }
 }

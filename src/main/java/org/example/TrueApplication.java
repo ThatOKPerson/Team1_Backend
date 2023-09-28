@@ -3,6 +3,8 @@ package org.example;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.example.resources.JobRoleController;
 
 /**
@@ -21,7 +23,13 @@ public class TrueApplication extends Application<TrueConfiguration> {
 
   @Override
   public void initialize(final Bootstrap<TrueConfiguration> bootstrap) {
-    // TODO: application initialization
+    bootstrap.addBundle(new SwaggerBundle<TrueConfiguration>() {
+      @Override
+      protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(
+          TrueConfiguration configuration) {
+        return configuration.getSwagger();
+      }
+    });
   }
 
   @Override

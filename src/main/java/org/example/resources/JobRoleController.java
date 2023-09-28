@@ -1,5 +1,6 @@
 package org.example.resources;
 
+import io.swagger.annotations.Api;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -16,6 +17,7 @@ import org.example.db.JobRoleDao;
  *
  * @author orankelly
  */
+@Api("Roles API")
 @Path("/api")
 public class JobRoleController {
   private static JobRoleService jobRoleService;
